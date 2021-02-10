@@ -7,17 +7,14 @@ enum MultilineAssociatedKeys {
     static var multilineCornerRadius = "multilineCornerRadius"
     static var multilineSpacing = "multilineSpacing"
     static var paddingInsets = "paddingInsets"
+    static var backupHeightConstraints = "backupHeightConstraints"
 }
 
 protocol ContainsMultilineText {
-	var multilineTextFont: UIFont? { get }
+    var constraintHeight: CGFloat? { get }
     var numLines: Int { get }
     var lastLineFillingPercent: Int { get }
     var multilineCornerRadius: Int { get }
     var multilineSpacing: CGFloat { get }
     var paddingInsets: UIEdgeInsets { get }
-}
-
-extension ContainsMultilineText {
-    var numLines: Int { return 0 }
 }

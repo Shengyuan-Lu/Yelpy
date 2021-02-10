@@ -12,16 +12,15 @@ public extension UITextView {
     @IBInspectable
     var linesCornerRadius: Int {
         get { return multilineCornerRadius }
-        set { multilineCornerRadius = min(newValue, 10) }
+        set { multilineCornerRadius = newValue }
     }
 
     @IBInspectable
     var skeletonLineSpacing: CGFloat {
         get { return multilineSpacing }
-        set { multilineSpacing = min(newValue, 10) }
+        set { multilineSpacing = newValue }
     }
 
-    @IBInspectable
     var skeletonPaddingInsets: UIEdgeInsets {
         get { return paddingInsets }
         set { paddingInsets = newValue }
@@ -29,9 +28,13 @@ public extension UITextView {
 }
 
 extension UITextView: ContainsMultilineText {
-	var multilineTextFont: UIFont? {
-		return font
-	}
+    var constraintHeight: CGFloat? {
+        heightConstraints.first?.constant
+    }
+    
+    var numLines: Int {
+        -1
+    }
 	
     var lastLineFillingPercent: Int {
         get {

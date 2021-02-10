@@ -60,9 +60,9 @@ class RestaurantsViewController: UIViewController {
             self.tableView.reloadData()
             
             // MARK: LAB6 Checking for coordinates
-            for rest in self.restaurantsArray {
-                 print("COORDINATES", rest.coordinates)
-             }
+//            for rest in self.restaurantsArray {
+//                 print("COORDINATES", rest.coordinates)
+//             }
             
             Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.stopAnimations), userInfo: nil, repeats: false)
         
