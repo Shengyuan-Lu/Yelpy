@@ -126,8 +126,8 @@
 		BB47B3AC247739890029FFF6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				BB364E8624AD99A9003EA679 /* Chat */,
 				BB364E8524AD999A003EA679 /* MainFeed */,
+				BB364E8624AD99A9003EA679 /* Chat */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

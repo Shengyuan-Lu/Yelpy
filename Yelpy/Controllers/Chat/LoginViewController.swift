@@ -1,28 +1,19 @@
-//
-//  LoginViewController.swift
-//  Yelpy
-//
-//  Created by Memo on 7/1/20.
-//  Copyright © 2020 memo. All rights reserved.
-//
-
-
 import UIKit
 import Parse
 
 class LoginViewController: UIViewController {
-
+    
     
     /*------ Outlets ------*/
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-   
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
-
+    
+    
     /*------ SIGN UP AND LOG IN FUNCTIONALITY  ------*/
     
     // ––––– LAB 5 TODO: SIGN UP FUNCTIONALITY
@@ -56,7 +47,7 @@ class LoginViewController: UIViewController {
     // ––––– LAB 5 TODO: LOGIN FUNCTIONALITY
     @IBAction func onLogin(_ sender: Any) {
         // Login user
-    
+        
         // Check text field inputs
         if usernameAndPasswordNotEmpty() {
             let username = usernameTextField.text ?? ""
@@ -70,7 +61,7 @@ class LoginViewController: UIViewController {
                     print("User \(username) logged in successfully")
                     // display view controller that needs to shown after successful login
                     NotificationCenter.default.post(name: NSNotification.Name("login"), object: nil)
-
+                    
                     
                 }
             }

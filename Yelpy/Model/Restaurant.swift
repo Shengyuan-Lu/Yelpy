@@ -1,20 +1,10 @@
-//
-//  Restaurant.swift
-//  Yelpy
-//
-//  Created by Memo on 5/21/20.
-//  Copyright © 2020 memo. All rights reserved.
-//
-
 import Foundation
 import UIKit
-
-// Lab 6: TODO: add MapKit framework --> import MapKit
-
+import MapKit
 
 class Restaurant {
     
-
+    
     var imageURL: URL?
     var url: URL?
     var name: String
@@ -24,7 +14,7 @@ class Restaurant {
     var reviews: Int
     var coordinates: [String:Double]
     
-
+    
     init(dict: [String: Any]) {
         imageURL = URL(string: dict["image_url"] as! String)
         name = dict["name"] as! String
@@ -43,6 +33,6 @@ class Restaurant {
         let categories = dict["categories"] as! [[String: Any]]
         return categories[0]["title"] as! String
     }
-
+    
     
 }

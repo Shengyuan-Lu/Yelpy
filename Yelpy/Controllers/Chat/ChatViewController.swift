@@ -1,18 +1,10 @@
-//
-//  ChatViewController.swift
-//  Yelpy
-//
-//  Created by Memo on 7/1/20.
-//  Copyright © 2020 memo. All rights reserved.
-//
-
 /*------ Comment ------*/
 
 import UIKit
 import Parse
 
 class ChatViewController: UIViewController {
-
+    
     
     /*------ Outlets + Variables ------*/
     @IBOutlet weak var messageTextField: UITextField!
@@ -25,7 +17,7 @@ class ChatViewController: UIViewController {
     
     // ––––– LAB 5 TODO: CREATE CHAT MESSAGE OBJECT
     let chatMessage = PFObject(className: "Message")
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,8 +91,8 @@ class ChatViewController: UIViewController {
         textField.resignFirstResponder()
         return true
     }
-
-
+    
+    
 }
 
 
@@ -108,7 +100,7 @@ class ChatViewController: UIViewController {
 
 extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }
@@ -130,14 +122,14 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         // BONUS: ADD avatarImage TO CELL STORYBOARD AND CONNECT TO ChatCell
-//        let baseURL = "https://api.adorable.io/avatars/"
-//        let imageSize = 20
-//        let avatarURL = URL(string: baseURL+"\(imageSize)/\(identifier).png")
-//        cell.avatarImage.af_setImage(withURL: avatarURL!)
-//        cell.avatarImage.layer.cornerRadius = cell.avatarImage.frame.height / 2
-//        cell.avatarImage.clipsToBounds = true
-    
-
+        //        let baseURL = "https://api.adorable.io/avatars/"
+        //        let imageSize = 20
+        //        let avatarURL = URL(string: baseURL+"\(imageSize)/\(identifier).png")
+        //        cell.avatarImage.af_setImage(withURL: avatarURL!)
+        //        cell.avatarImage.layer.cornerRadius = cell.avatarImage.frame.height / 2
+        //        cell.avatarImage.clipsToBounds = true
+        
+        
         return cell
     }
     

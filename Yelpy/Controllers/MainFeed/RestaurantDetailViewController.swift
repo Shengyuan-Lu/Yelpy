@@ -1,21 +1,11 @@
-//
-//  DetailViewController.swift
-//  Yelpy
-//
-//  Created by Memo on 5/26/20.
-//  Copyright © 2020 memo. All rights reserved.
-//
-
 import UIKit
 import AlamofireImage
 import MapKit
 
-// NOTE: Once you go through the lab this error will dissapear
 class RestaurantDetailViewController: UIViewController, MKMapViewDelegate, PostImageViewControllerDelegate {
     
-
-    // ––––– TODO: Configure outlets
-    // NOTE: Make sure to set images to "Content Mode: Aspect Fill" on the
+    
+    // Configure outlets
     @IBOutlet weak var headerImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var starImage: UIImageView!
@@ -28,13 +18,11 @@ class RestaurantDetailViewController: UIViewController, MKMapViewDelegate, PostI
     // Initialize restaurant variable
     var r: Restaurant!
     
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureOutlets()
-        // 11) purposely wait until last minute to configure this to explain to students delegation!
-        // step 10) is running the app
         mapView.delegate = self
     }
     
@@ -42,11 +30,11 @@ class RestaurantDetailViewController: UIViewController, MKMapViewDelegate, PostI
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPostImageVC" {
             let postImageVC = segue.destination as! PostImageViewController
-            // NOTE: PLEASE FOLLOW LAB BEFORE ASKING FOR HELP ON THIS
+            
             postImageVC.delegate = self
         }
     }
-
+    
     
     // Configure outlets
     func configureOutlets() {
@@ -59,16 +47,16 @@ class RestaurantDetailViewController: UIViewController, MKMapViewDelegate, PostI
         let tintView = UIView()
         tintView.backgroundColor = UIColor(white: 0, alpha: 0.3) //change to your liking
         tintView.frame = CGRect(x: 0, y: 0, width: headerImage.frame.width, height: headerImage.frame.height)
-
+        
         headerImage.addSubview(tintView)
         
-        // MARK: Lab 6 set region for map to be coordinates of restaurant
+        // MARK: set region for map to be coordinates of restaurant
         // 1) get longitude and latitude from coordinates property
         let latitude = r.coordinates["latitude"]!
         let longitude = r.coordinates["longitude"]!
         
         // test coordinates are being printed
-
+        
         // 2) initialize coordinate point for restaurant
         let locationCoordinate = CLLocationCoordinate2DMake(CLLocationDegrees.init(latitude), CLLocationDegrees.init(longitude))
         
@@ -104,16 +92,13 @@ class RestaurantDetailViewController: UIViewController, MKMapViewDelegate, PostI
             // MARK: USE MKPinAnnotationView and NOT MKAnnotationView
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
             annotationView?.canShowCallout = true
-
+            
             // 9) Add info button to annotation view
             let annotationViewButton = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
             annotationViewButton.setImage(UIImage(named: "camera"), for: .normal)
-
+            
             annotationView?.leftCalloutAccessoryView = annotationViewButton
         }
-        
-        let imageView = annotationView.leftCalloutAccessoryView as! UIImageView
-        imageView.image = UIImage(named: "camera")
         
         return mapView.dequeueReusableAnnotationView(withIdentifier: "removeMe")
         
@@ -123,7 +108,6 @@ class RestaurantDetailViewController: UIViewController, MKMapViewDelegate, PostI
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         // 14) performSegue to PostImageVC
         self.performSegue(withIdentifier: "toPostImageVC", sender: nil)
-        
     }
     
     // MARK: 19) Conform to PostImageViewDelegate protocol

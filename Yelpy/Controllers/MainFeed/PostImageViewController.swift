@@ -1,11 +1,3 @@
-//
-//  PostImageViewController.swift
-//  Yelpy
-//
-//  Created by German Flores on 7/8/20.
-//  Copyright © 2020 memo. All rights reserved.
-//
-
 import UIKit
 
 
@@ -22,10 +14,9 @@ class PostImageViewController: UIViewController, UIImagePickerControllerDelegate
     // MARK: Add delegate for the protocol you created
     weak var delegate: PostImageViewControllerDelegate!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         createImagePicker()
         navigationController?.navigationBar.isHidden = true
         
@@ -44,12 +35,12 @@ class PostImageViewController: UIViewController, UIImagePickerControllerDelegate
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let originalImage = info[.originalImage] as! UIImage
-
+        
         self.selectedImageView.image = originalImage
         
         dismiss(animated: true, completion: nil)
     }
-
+    
     
     // MARK: Create Image Picker
     func createImagePicker() {
@@ -67,5 +58,5 @@ class PostImageViewController: UIViewController, UIImagePickerControllerDelegate
         self.present(imagePicker, animated: true, completion: nil)
     }
     
-
+    
 }

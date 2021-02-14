@@ -1,18 +1,10 @@
-//
-//  ViewController.swift
-//  Yelpy
-//
-//  Created by Memo on 5/21/20.
-//  Copyright © 2020 memo. All rights reserved.
-//
-
 import UIKit
 import AlamofireImage
 import Lottie
 import SkeletonView
 
 class RestaurantsViewController: UIViewController {
-        
+    
     // Outlets
     @IBOutlet weak var tableView: UITableView!
     var restaurantsArray: [Restaurant] = []
@@ -26,7 +18,7 @@ class RestaurantsViewController: UIViewController {
     
     let yelpRefresh = UIRefreshControl()
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,8 +30,8 @@ class RestaurantsViewController: UIViewController {
         
         // Search Bar delegate
         searchBar.delegate = self
-    
-    
+        
+        
         // Get Data from API
         getAPIData()
         
@@ -49,7 +41,7 @@ class RestaurantsViewController: UIViewController {
     
     
     @objc func getAPIData() {
-       
+        
         API.getRestaurants() { (restaurants) in
             guard let restaurants = restaurants else {
                 return
@@ -59,20 +51,15 @@ class RestaurantsViewController: UIViewController {
             self.filteredRestaurants = restaurants
             self.tableView.reloadData()
             
-            // MARK: LAB6 Checking for coordinates
-//            for rest in self.restaurantsArray {
-//                 print("COORDINATES", rest.coordinates)
-//             }
-            
             Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.stopAnimations), userInfo: nil, repeats: false)
-        
+            
             self.yelpRefresh.endRefreshing()
             
         }
     }
     
     
-
+    
 }
 
 extension RestaurantsViewController: SkeletonTableViewDataSource {
@@ -86,23 +73,23 @@ extension RestaurantsViewController: SkeletonTableViewDataSource {
         // Set the size to the frame
         //animationView!.frame = view.bounds
         animationView!.frame = CGRect(x: view.frame.width / 3 , y: 156, width: 100, height: 100)
-
+        
         // fit the
         animationView!.contentMode = .scaleAspectFit
         view.addSubview(animationView!)
         
         // 4. Set animation loop mode
         animationView!.loopMode = .loop
-
+        
         // Animation speed - Larger number = faste
         animationView!.animationSpeed = 5
-
+        
         //  Play animation
         animationView!.play()
         
     }
     
-
+    
     @objc func stopAnimations() {
         // ----- Stop Animation
         animationView?.stop()
@@ -112,7 +99,7 @@ extension RestaurantsViewController: SkeletonTableViewDataSource {
         refresh = false
     }
     
-
+    
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
         return "RestaurantCell"
     }
@@ -169,7 +156,7 @@ extension RestaurantsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText != "" {
             filteredRestaurants = restaurantsArray.filter { (r: Restaurant) -> Bool in
-              return r.name.lowercased().contains(searchText.lowercased())
+                return r.name.lowercased().contains(searchText.lowercased())
             }
         }
         else {
@@ -177,20 +164,20 @@ extension RestaurantsViewController: UISearchBarDelegate {
         }
         tableView.reloadData()
     }
-
+    
     
     // Show Cancel button when typing
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-       self.searchBar.showsCancelButton = true
+        self.searchBar.showsCancelButton = true
     }
-       
+    
     // Logic for searchBar cancel button
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-       searchBar.showsCancelButton = false // remove cancel button
-       searchBar.text = "" // reset search text
-       searchBar.resignFirstResponder() // remove keyboard
-       filteredRestaurants = restaurantsArray // reset results to display
-       tableView.reloadData()
+        searchBar.showsCancelButton = false // remove cancel button
+        searchBar.text = "" // reset search text
+        searchBar.resignFirstResponder() // remove keyboard
+        filteredRestaurants = restaurantsArray // reset results to display
+        tableView.reloadData()
     }
     
     
