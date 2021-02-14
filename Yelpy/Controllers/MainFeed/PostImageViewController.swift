@@ -9,14 +9,18 @@
 import UIKit
 
 
-// MARK: LAB 6 TODO: Create Protocol for PostImageViewControllerDelegate
+// MARK: Create Protocol for PostImageViewControllerDelegate
+protocol PostImageViewControllerDelegate: class {
+    func imageSelected(controller: PostImageViewController, image: UIImage)
+}
 
 
 class PostImageViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var selectedImageView: UIImageView!
     
-    // MARK: LAB 6 TODO: Add delegate for the protocol you created
+    // MARK: Add delegate for the protocol you created
+    weak var delegate: PostImageViewControllerDelegate!
     
 
     override func viewDidLoad() {
@@ -31,12 +35,12 @@ class PostImageViewController: UIViewController, UIImagePickerControllerDelegate
     @IBAction func onFinishPosting(_ sender: Any) {
         performSegue(withIdentifier: "unwindToDetail", sender: self)
         
-        // MARK: LAB 6 TODO: Pass image through protocol method
-        
+        // MARK: Pass image through protocol method
+        delegate.imageSelected(controller: self, image: self.selectedImageView.image!)
     }
     
     
-    // MARK: LAB 6 TODO: ImagePicker Delegate Methods
+    // MARK: ImagePicker Delegate Methods
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let originalImage = info[.originalImage] as! UIImage

@@ -22,10 +22,7 @@ class Restaurant {
     var phone: String
     var rating: Double
     var reviews: Int
-    
-    
-    // MARK: Lab 6:  Refactor Restaurant Model
-    
+    var coordinates: [String:Double]
     
 
     init(dict: [String: Any]) {
@@ -35,9 +32,9 @@ class Restaurant {
         reviews = dict["review_count"] as! Int
         phone = dict["display_phone"] as! String
         url = URL(string: dict["url"] as! String)
-        mainCategory = Restaurant.getMainCategory(dict: dict)
+        coordinates = dict["coordinates"] as! [String:Double]
         
-        // LAB 6
+        mainCategory = Restaurant.getMainCategory(dict: dict)
         
     }
     
