@@ -180,6 +180,11 @@ extension RestaurantsViewController: UISearchBarDelegate {
         tableView.reloadData()
     }
     
+    // Deselect highlighted area
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     
     
 }
