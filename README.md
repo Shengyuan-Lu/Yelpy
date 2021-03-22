@@ -7,6 +7,7 @@ The following functionality is completed:
 
 - [x] User can login
 - [x] User can post message in the chat
+- [x] The chat refreshes when the user or someone else posts a message
 - [x] User can search for a resaurant by name
 - [x] The restaurant cell displays the name, yelp rating, phone number, and a picture
 - [x] Tap on the restaurant cell displays the location of the restaurant with a pin
